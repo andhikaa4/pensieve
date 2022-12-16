@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import BG from './Images/bg.jpg'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Auth from './components/pages/Auth';
+import Summary from './components/pages/Summary';
+import Details from './components/pages/Details';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <div style={{
+      backgroundImage: `url(${BG})`,
+      height: "100vh",
+      backgroundSize:"100%"
+    }}>
+        <Router>
+          <Routes>
+            <Route exact path='/' element={<Auth/>}/>
+            <Route exact path='/summary' element={<Summary/>}/>
+            <Route exact path='/details' element={<Details/>}/>
+          </Routes>
+        </Router>
+      </div>
   );
 }
 

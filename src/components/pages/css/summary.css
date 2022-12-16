@@ -1,0 +1,64 @@
+input::placeholder{
+    color:white
+}
+
+span {
+    display: inline-block;
+    vertical-align:middle;
+    color:white;
+    width:0;
+    overflow: hidden;
+    white-space:nowrap;
+    transition:width .5s linear;
+  }
+  td:hover span {
+    width: 30px;
+  }
+
+
+  .zui-table {
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+.zui-table thead th {
+    border: solid 1px #DDEEEE;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+}
+.zui-table tbody td {
+    border: solid 1px #DDEEEE;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+.zui-table-rounded {
+    border: none;
+}
+.zui-table-rounded thead th {
+    border: none;
+    color: rgb(255, 255, 255);
+}
+.zui-table-rounded thead th:first-child {
+    border-radius: 10px 0 0 0;
+    border-right: solid 1px white;
+}
+.zui-table-rounded thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+.zui-table-rounded tbody td {
+    border: none;
+    border-top: solid 1px #ffffff;
+    
+}
+.zui-table-rounded tbody td:first-child {
+    border-right: solid 1px #ffffff;
+    
+}
+.zui-table-rounded tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+.zui-table-rounded tbody tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
