@@ -3,10 +3,11 @@ import {MDBInput, MDBTabsPane} from 'mdb-react-ui-kit'
 import { Alert } from 'react-bootstrap'
 import { useMutation } from 'react-query'
 import { API } from '../config/api'
+import { useNavigate } from 'react-router-dom'
 
 
 function Login({justifyActive, handleJustifyClick}) {
-
+        const navigate = useNavigate()
         const [message, setMessage] = useState()
         const [data, setData] = useState({
                 user_name:'',
@@ -23,19 +24,46 @@ function Login({justifyActive, handleJustifyClick}) {
         const handleSubmit = useMutation( async(e) => {
             e.preventDefault()
             try {
-                const response = await API.post('/login',data)
-               console.log(response)
-                const alert = (
-                    <Alert variant="success">Berhasil Login</Alert>
-                  );
-              
-                  setMessage(alert);
-                //   setData({
-                //     user_name:'',
-                //     password:''
-                //   })
+                if(data.user_name === ""){
+                    const alert = (
+                        <Alert variant="danger">Please Enter the correct Email</Alert>
+                      );
+                  
+                      setMessage(alert);
+                    }else if(data.password === ""){
+                        const alert = (
+                            <Alert variant="danger">Password is blank</Alert>
+                          );
+                      
+                          setMessage(alert);
+                        }
+                if (data.user_name && data.password !== ""){
+
+                    const response = await API.post("/login", data, {
+                        auth:{
+                            username:data.user_name,
+                            password: data.password
+                        }
+                    })
+                    localStorage.setItem("token", response.data.response.message.loginToken)
+                    navigate("/summary")
+                }   
+                
             } catch (error) {
                 console.log(error);
+                if(error.response.data.response.message === 'passwords donot match'){
+                    const alert = (
+                        <Alert variant="danger">Invalid Password</Alert>
+                      );
+                  
+                      setMessage(alert); 
+                } else {
+                    const alert = (
+                        <Alert variant="danger">Invalid Email or Password</Alert>
+                      );
+                  
+                      setMessage(alert);
+                }
             }
             
         })

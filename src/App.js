@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Auth/>}/>
             <Route exact path='/summary' element={<Summary/>}/>
-            <Route exact path='/details' element={<Details/>}/>
+            <Route exact path='/details/:id' element={<Details/>}/>
           </Routes>
         </Router>
       </div>

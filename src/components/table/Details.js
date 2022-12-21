@@ -1,6 +1,6 @@
 import '../pages/css/summary.css'
 
-function TableDetails() {
+function TableDetails({data}) {
   return (
     <table className='text-white w-100 zui-table zui-table-rounded'>
       <thead>
@@ -10,10 +10,13 @@ function TableDetails() {
         </tr>
       </thead>
       <tbody>
+      {data?.map((item)=>(
         <tr>
-          <td>1</td>
-          <td>Mark</td>
-        </tr>
+        <td>{item.timestamp}</td>
+        <td>{item.location}</td>
+      </tr>
+      ))}
+        
        
       </tbody>
     </table>

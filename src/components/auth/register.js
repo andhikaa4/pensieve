@@ -20,22 +20,45 @@ function Register({justifyActive, handleJustifyClick}) {
         })
     }
 
+
     const handleSubmit = useMutation( async(e) => {
         e.preventDefault()
         try {
-            const response = await API.post('/signup',data)
 
-            const alert = (
-                <Alert variant="success">Berhasil Register</Alert>
-              );
-          
-              setMessage(alert);
-              setData({
-                name:'',
-                email:'',
-                password:''
-              })
-            console.log(response);
+            if(data.name === ""){
+                const alert = (
+                    <Alert variant="danger">Please enter a name</Alert>
+                  );
+              
+                   setMessage(alert);
+                }else if(data.email === ""){
+                    const alert = (
+                        <Alert variant="danger">Email is Required</Alert>
+                      );
+                  
+                        setMessage(alert);
+                    } else {
+                        const alert = (
+                            <Alert variant="danger">Password is blank</Alert>
+                          );
+                      
+                          setMessage(alert);
+                    }
+                    if (data.name && data.email && data.password !== "") {
+                        
+                        const response = await API.post('/signup',data)
+                            const alert = (
+                                <Alert variant="success">Register Success</Alert>
+                              );
+                          
+                              setMessage(alert);
+                              setData({
+                                name:'',
+                                email:'',
+                                password:''
+                              })
+                              console.log(response);
+                    }
         } catch (error) {
             console.log(error);
         }
